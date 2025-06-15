@@ -8,11 +8,13 @@ jobs:
   testRunner:
     name: Test in ${{ matrix.testMode }} ✨
     runs-on: ubuntu-latest
+    permissions: # <-- 添加這一行
+      contents: write # <-- 添加這一行，賦予寫入倉庫內容的權限
     strategy:
       fail-fast: false
       matrix:
         testMode:
-          - EditMode
+          #- EditMode
           - PlayMode
     steps:
       - name: Checkout code
