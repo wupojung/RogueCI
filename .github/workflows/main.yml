@@ -40,10 +40,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: Library
-          key: Library-test-project-${{ matrix.targetPlatform }}
-          restore-keys: |
-            Library-test-project-
-            Library-
+          key: Library-test-project-${{ matrix.testMode }}
+          restore-keys:
+            - Library-test-project-${{ matrix.testMode }}
+            - Library-
 
       - name: Run tests
         uses: game-ci/unity-test-runner@v4
@@ -55,7 +55,7 @@ jobs:
         with:
           testMode: ${{ matrix.testMode }}
           checkName: ${{ matrix.testMode }} test results
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+         # githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/upload-artifact@v4
         with:
